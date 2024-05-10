@@ -1,0 +1,22 @@
+mkdir packages
+echo -e 'packages:\n - "packages/*"' > pnpm-workspace.yaml
+pnpm init 
+
+cd packages/
+mkdir components core docs hooks theme utils
+./init.shell
+
+pnpm create vite play --telmplate vue-ts
+# 修改分包包名
+
+cd ..
+pnpm add -Dw typescript vite vitest vue-tsc postcss-color-mix postcss-each postcss-each-variables postcss-for postcss-nested @types/node @types/lodash-es @vitejs/plugin-vue @vitejs/plugin-vue-jsx @vue/tsconfig
+pnpm add -w lodash-es vue
+pnpm add -D @vue/test-utils @vitest/coverage-v8 jsdom --filter @au-element/components
+pnpm add @popperjs/core async-validator --filter @au-element/components
+pnpm add -D vitepress --filter @au-element/docs
+
+touch tsconfig.json
+touch tsconfig.node.json
+touch postcss.config.cjs
+pnpm install

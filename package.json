@@ -1,12 +1,12 @@
 {
-  "name": "@au-element/workspace",
+  "name": "@aukuf-ui/workspace",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm --filter @au-element/play dev",
-    "docs:dev": "pnpm --filter @au-element/docs dev",
-    "docs:build": "pnpm --filter @au-element/docs build",
+    "dev": "pnpm --filter @aukuf-ui/play dev",
+    "docs:dev": "pnpm --filter @aukuf-ui/docs dev",
+    "docs:build": "pnpm --filter @aukuf-ui/docs build",
     "test": "echo 'start'"
   },
   "keywords": [],
@@ -31,9 +31,9 @@
   "dependencies": {
     "lodash-es": "^4.17.21",
     "vue": "^3.4.21",
-    "au-element": "workspace:*",
-    "@au-element/hooks": "workspace:*",
-    "@au-element/utils": "workspace:*",
-    "@au-element/theme": "workspace:*"
+    "aukuf-ui": "workspace:*",
+    "@aukuf-ui/hooks": "workspace:*",
+    "@aukuf-ui/utils": "workspace:*",
+    "@aukuf-ui/theme": "workspace:*"
   }
 }

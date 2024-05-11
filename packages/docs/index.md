@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Au-Element"
+  name: "Aukuf-UI"
   text: "aukuf 组件库"
   tagline: My great project tagline
   actions:

@@ -8,16 +8,16 @@ importers:
 
   .:
     dependencies:
-      '@au-element/hooks':
+      '@aukuf-ui/hooks':
         specifier: workspace:*
         version: link:packages/hooks
-      '@au-element/theme':
+      '@aukuf-ui/theme':
         specifier: workspace:*
         version: link:packages/theme
-      '@au-element/utils':
+      '@aukuf-ui/utils':
         specifier: workspace:*
         version: link:packages/utils
-      au-element:
+      aukuf-ui:
         specifier: workspace:*
         version: link:packages/core
       lodash-es:
@@ -91,7 +91,7 @@ importers:
 
   packages/core:
     dependencies:
-      '@au-element/components':
+      '@aukuf-ui/components':
         specifier: workspace:*
         version: link:../components
 

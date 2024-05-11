@@ -1,8 +1,8 @@
-import { makeInstaller } from "@au-element/utils";
+import { makeInstaller } from "@aukuf-ui/utils";
 import components from "./components";
-import "@au-element/theme/index.css";
+import "@aukuf-ui/theme/index.css";
 
 const installer = makeInstaller(components);
 
-export * from "@au-element/components";
+export * from "@aukuf-ui/components";
 export default installer;

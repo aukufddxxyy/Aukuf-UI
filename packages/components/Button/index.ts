@@ -1,4 +1,4 @@
 import Button from "./Button.vue";
-import { withInstall } from "@au-element/utils";
+import { withInstall } from "@aukuf-ui/utils";
 
 export const AuButton = withInstall(Button);

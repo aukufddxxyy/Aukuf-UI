@@ -1,9 +1,7 @@
-<script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <au-button>button</au-button>
+  <au-button type="primary" size="small" :disable="true">button</au-button>
 </template>
 
 <style scoped>

@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Aukuf-UI"
-  text: "aukuf 组件库"
+  # text: ""
   tagline: My great project tagline
   actions:
     - theme: brand

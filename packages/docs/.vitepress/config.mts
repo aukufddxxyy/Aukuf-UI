@@ -2,9 +2,9 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Au-Element",
+  title: "Aukuf-UI",
   description: "aukuf 组件库",
-  base: "/au-element",
+  base: "/Aukuf-UI/",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -23,7 +23,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/aukufddxxyy/au-element" },
+      { icon: "github", link: "https://github.com/aukufddxxyy/Aukuf-UI" },
     ],
   },
 });

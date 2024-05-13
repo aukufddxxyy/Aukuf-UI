@@ -20,3 +20,8 @@ touch tsconfig.json
 touch tsconfig.node.json
 touch postcss.config.cjs
 pnpm install
+
+
+# 引入storybook
+cd packages/play
+pnpm dlx storybook@latest init

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm --filter @aukuf-ui/play dev",
+    "story": "pnpm --filter @aukuf-ui/play storybook",
     "docs:dev": "pnpm --filter @aukuf-ui/docs dev",
     "docs:build": "pnpm --filter @aukuf-ui/docs build",
     "test": "pnpm --filter @aukuf-ui/components test"
@@ -13,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@iconify-json/mdi": "^1.1.66",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.12.11",
     "@vitejs/plugin-vue": "^5.0.4",
@@ -29,11 +31,12 @@
     "vue-tsc": "^2.0.6"
   },
   "dependencies": {
-    "lodash-es": "^4.17.21",
-    "vue": "^3.4.21",
-    "aukuf-ui": "workspace:*",
     "@aukuf-ui/hooks": "workspace:*",
+    "@aukuf-ui/theme": "workspace:*",
     "@aukuf-ui/utils": "workspace:*",
-    "@aukuf-ui/theme": "workspace:*"
+    "aukuf-ui": "workspace:*",
+    "iconify-icon": "^2.1.0",
+    "lodash-es": "^4.17.21",
+    "vue": "^3.4.21"
   }
 }

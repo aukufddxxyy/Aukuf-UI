@@ -1,7 +1,10 @@
-import { describe, it, expect, vi } from "vitest";
+import { h } from "vue";
+import { describe, it, expect, test } from "vitest";
 import { mount } from "@vue/test-utils";
 
 import Button from "./Button.vue";
+import ButtonGroup from "./ButtonGroup.vue";
+import Icon from "../Icon/Icon.vue";
 
 describe("Button.vue", () => {
   //   class
@@ -68,5 +71,106 @@ describe("Button.vue", () => {
       },
     });
     expect(wrapper.element.tagName).toBe("A");
+  });
+
+  // icon
+  it("should render icon when icon prop is set", () => {
+    const wrapper = mount(Button, {
+      props: {
+        icon: "mdi:cloud-download",
+      },
+      global: {
+        stubs: ["AuIcon"],
+      },
+    });
+    const iconElement = wrapper.findComponent(Icon);
+    expect(iconElement.exists()).toBeTruthy();
+    expect(iconElement.attributes("icon")).toBe("mdi:cloud-download");
+  });
+
+  //   loading-icon
+  it("should render loading icon when loading prop is set", async () => {
+    const wrapper = mount(Button, {
+      props: {
+        loading: true,
+      },
+      global: {
+        stubs: ["AuIcon"],
+      },
+    });
+    // expect(wrapper.findComponent(Icon).exists()).toBe(true);
+    const iconElement = wrapper.findComponent(Icon);
+
+    expect(wrapper.find(".loading-icon").exists()).toBe(true);
+    expect(iconElement.exists()).toBeTruthy();
+    expect(iconElement.attributes("icon")).toBe("mdi:loading");
+    await wrapper.trigger("click");
+    expect(wrapper.emitted("click")).toBeUndefined();
+  });
+});
+
+describe("ButtonGroup.vue", () => {
+  test("basic button group", async () => {
+    const wrapper = mount(ButtonGroup, {
+      slots: {
+        default: [Button, Button],
+      },
+    });
+    // const wrapper = mount(() => (
+    //   // <ButtonGroup>
+    //   //   <Button>button 1</Button>
+    //   //   <Button>button 2</Button>
+    //   // </ButtonGroup>
+    // ));
+
+    expect(wrapper.classes()).toContain("au-button-group");
+  });
+
+  test("button group size", () => {
+    const sizes = ["large", "default", "small"];
+    sizes.forEach((size) => {
+      const wrapper = mount(ButtonGroup, {
+        props: {
+          size: size as any,
+        },
+        slots: {
+          default: [Button, Button],
+        },
+      });
+
+      const buttonWrapper = wrapper.findComponent(Button);
+      expect(buttonWrapper.classes()).toContain(`au-button--${size}`);
+    });
+  });
+
+  test("button group type", () => {
+    const types = ["primary", "success", "warning", "danger", "info"];
+    types.forEach((type) => {
+      const wrapper = mount(ButtonGroup, {
+        props: {
+          type: type as any,
+        },
+        slots: {
+          default: [Button, Button],
+        },
+      });
+
+      const buttonWrapper = wrapper.findComponent(Button);
+      expect(buttonWrapper.classes()).toContain(`au-button--${type}`);
+    });
+  });
+
+  test("button group disabled", () => {
+    const wrapper = mount(ButtonGroup, {
+      props: {
+        disabled: true,
+      },
+      slots: {
+        default: [h(Button, null, "1"), h(Button)],
+      },
+    });
+
+    const buttonWrapper = wrapper.findComponent(Button);
+    expect(buttonWrapper.classes()).toContain(`is-disabled`);
   });
 });

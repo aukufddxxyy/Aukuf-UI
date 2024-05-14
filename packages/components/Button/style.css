@@ -35,6 +35,7 @@
   font-weight: var(--au-button-font-weight);
   user-select: none;
   vertical-align: middle;
+  appearance: none;
   -webkit-appearance: none;
   background-color: var(--au-button-bg-color);
   border: var(--au-border);

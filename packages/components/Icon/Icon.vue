@@ -26,4 +26,18 @@ const customStyle = computed(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.loading-icon {
+  /* 无限循环旋转动画 */
+  animation: loading 1s infinite linear;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>

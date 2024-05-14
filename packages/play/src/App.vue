@@ -1,7 +1,22 @@
 <script setup lang="ts">
-import { AuButton } from "aukuf-ui";
+import { AuButton, AuButtonGroup } from "aukuf-ui";
 </script>
 
 <template>
-  <au-button type="primary" size="small" :loading="true" :disable="true">button</au-button>
+  <au-button-group type="danger">
+    <au-button
+      size="small"
+      :loading="true"
+      :disable="true"
+    >
+      button
+    </au-button>
+    <au-button
+      size="small"
+      :loading="true"
+      :disable="true"
+    >
+      button
+    </au-button>
+  </au-button-group>
 </template>

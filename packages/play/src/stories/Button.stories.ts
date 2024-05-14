@@ -1,14 +1,15 @@
+import { h } from "vue";
 import type { Meta, StoryObj, ArgTypes } from "@storybook/vue3";
 import { fn, within, userEvent, expect } from "@storybook/test";
 
-import { AuButton } from "aukuf-ui";
+import { AuButton, AuButtonGroup } from "aukuf-ui";
 
-type Story = StoryObj<typeof AuButton> & { argTypes: ArgTypes };
+type Story = StoryObj<typeof AuButton> & { argTypes?: ArgTypes };
 
 const meta: Meta<typeof AuButton> = {
   title: "Example/Button",
   component: AuButton,
-  // subcomponents: { ButtonGroup: ErButtonGroup },
+  subcomponents: { ButtonGroup: AuButtonGroup },
   tags: ["autodocs"],
   argTypes: {
     type: {
@@ -81,6 +82,85 @@ export const Default: Story & { args: { content: string } } = {
       await userEvent.click(canvas.getByRole("button"));
     });
 
+    expect(args.onClick).toHaveBeenCalled();
+  },
+};
+
+export const Circle: Story = {
+  argTypes: {
+    content: { control: { type: "text" } },
+  },
+  args: {
+    icon: "mdi:magnify",
+  },
+  render: (args) => ({
+    components: { AuButton },
+    setup() {
+      return { args };
+    },
+    template: container(`<AuButton v-bind="args" circle/>`),
+  }),
+};
+
+export const Group: Story & { args: { content1: string; content2: string } } = {
+  argTypes: {
+    groupType: {
+      control: { type: "select" },
+      options: ["primary", "success", "warning", "danger", "info", ""],
+    },
+    groupSize: {
+      control: { type: "select" },
+      options: ["large", "default", "small", ""],
+    },
+    groupDisabled: {
+      control: "boolean",
+    },
+    content1: {
+      control: { type: "text" },
+      defaultValue: "Button1",
+    },
+    content2: {
+      control: { type: "text" },
+      defaultValue: "Button2",
+    },
+  },
+  args: {
+    round: true,
+    content1: "Button1",
+    content2: "Button2",
+  },
+  render: (args: any) => ({
+    components: { AuButton, AuButtonGroup },
+    setup() {
+      return { args };
+    },
+    // template: h(
+    //   AuButtonGroup,
+    //   {
+    //     type: args.groupType,
+    //     size: args.groupSize,
+    //     disabled: args.groupDisabled,
+    //   },
+    //   [
+    //     h(AuButton, { ...args }, args.content1),
+    //     h(AuButton, { ...args }, args.content2),
+    //   ],
+    // ),
+    template: container(`
+       <au-button-group :type="args.groupType" :size="args.groupSize" :disabled="args.groupDisabled">
+         <au-button v-bind="args">{{args.content1}}</au-button>
+         <au-button v-bind="args">{{args.content2}}</au-button>
+       </au-button-group>
+    `),
+  }),
+  play: async ({ canvasElement, args, step }) => {
+    const canvas = within(canvasElement);
+    await step("click btn1", async () => {
+      await userEvent.click(canvas.getByText("Button1"));
+    });
+    await step("click btn2", async () => {
+      await userEvent.click(canvas.getByText("Button2"));
+    });
     expect(args.onClick).toHaveBeenCalled();
   },
 };

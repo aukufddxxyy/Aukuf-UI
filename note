@@ -25,3 +25,5 @@ pnpm install
 # 引入storybook
 cd packages/play
 pnpm dlx storybook@latest init
+
+# 打包

@@ -1,5 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import AuElement from "aukuf-ui";
+import AukufUI from "aukuf-ui";
 
-createApp(App).use(AuElement).mount("#app");
+import "aukuf-ui/dist/index.css";
+
+createApp(App).use(AukufUI).mount("#app");

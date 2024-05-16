@@ -1,15 +1,21 @@
 <template>
-  <iconify-icon
+  <i
+    class="au-icon"
+    v-bind="$attrs"
+    :style="customStyle"
+    :icon="props.icon"
+  ></i>
+  <!-- <iconify-icon
     class="au-icon"
     :icon="props.icon"
     :style="customStyle"
     v-bind="$attrs"
-  />
+  /> -->
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
-import "iconify-icon";
+// import "iconify-icon";
 import type { IconProps } from "./types";
 
 defineOptions({
@@ -27,17 +33,5 @@ const customStyle = computed(() => {
 </script>
 
 <style scoped>
-.loading-icon {
-  /* 无限循环旋转动画 */
-  animation: loading 1s infinite linear;
-}
-
-@keyframes loading {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+@import "./style.css";
 </style>

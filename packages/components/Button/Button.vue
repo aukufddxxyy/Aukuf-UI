@@ -41,7 +41,7 @@
 import { computed, ref, inject } from "vue";
 import type { ButtonProps, ButtonEmits, ButtonInstance } from "./types";
 import { throttle } from "lodash-es";
-import { BUTTON_GROUP_CTX_KEY } from "./constans";
+import { BUTTON_GROUP_CTX_KEY } from "./constants";
 import AuIcon from "../Icon/Icon.vue";
 
 defineOptions({

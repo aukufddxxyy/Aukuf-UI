@@ -23,9 +23,6 @@ importers:
       aukuf-ui:
         specifier: workspace:*
         version: link:packages/core
-      iconify-icon:
-        specifier: ^2.1.0
-        version: 2.1.0
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -36,6 +33,9 @@ importers:
       '@iconify-json/mdi':
         specifier: ^1.1.66
         version: 1.1.66
+      '@iconify/vue':
+        specifier: ^4.1.2
+        version: 4.1.2(vue@3.4.27(typescript@5.4.5))
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -108,22 +108,22 @@ importers:
 
   packages/core:
     dependencies:
-      '@iconify-json/mdi':
-        specifier: ^1.1.66
-        version: 1.1.66
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
       async-validator:
         specifier: ^4.2.5
         version: 4.2.5
-      iconify-icon:
-        specifier: ^2.1.0
-        version: 2.1.0
       vue:
         specifier: ^3.4.21
         version: 3.4.27(typescript@5.4.5)
     devDependencies:
+      '@iconify-json/mdi':
+        specifier: ^1.1.66
+        version: 1.1.66
+      '@iconify/vue':
+        specifier: ^4.1.2
+        version: 4.1.2(vue@3.4.27(typescript@5.4.5))
       vite-plugin-dts:
         specifier: ^3.9.1
         version: 3.9.1(@types/node@20.12.11)(rollup@4.17.2)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.11)(sass@1.77.1))
@@ -1068,6 +1068,11 @@ packages:
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
+
+  '@iconify/vue@4.1.2':
+    resolution: {integrity: sha512-CQnYqLiQD5LOAaXhBrmj1mdL2/NCJvwcC4jtW2Z8ukhThiFkLDkutarTOV2trfc9EXqUqRs0KqXOL9pZ/IyysA==}
+    peerDependencies:
+      vue: '>=3'
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -2824,9 +2829,6 @@ packages:
   human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
     engines: {node: '>=16.17.0'}
-
-  iconify-icon@2.1.0:
-    resolution: {integrity: sha512-lto4XU3bwTQnb+D/CsJ4dWAo0aDe+uPMxEtxyOodw9l7R9QnJUUab3GCehlw2M8mDHdeUu/ufx8PvRQiJphhXg==}
 
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -5846,6 +5848,11 @@ snapshots:
 
   '@iconify/types@2.0.0': {}
 
+  '@iconify/vue@4.1.2(vue@3.4.27(typescript@5.4.5))':
+    dependencies:
+      '@iconify/types': 2.0.0
+      vue: 3.4.27(typescript@5.4.5)
+
   '@isaacs/cliui@8.0.2':
     dependencies:
       string-width: 5.1.2
@@ -8252,10 +8259,6 @@ snapshots:
   human-signals@2.1.0: {}
 
   human-signals@5.0.0: {}
-
-  iconify-icon@2.1.0:
-    dependencies:
-      '@iconify/types': 2.0.0
 
   iconv-lite@0.4.24:
     dependencies:

@@ -22,7 +22,7 @@
     <template v-if="loading">
       <slot name="loading">
         <au-icon
-          class="loading-icon"
+          :loading="true"
           :style="iconStyle"
           :icon="loadingIcon ?? 'mdi:loading'"
         />
@@ -39,8 +39,8 @@
 
 <script setup lang="ts">
 import { computed, ref, inject } from "vue";
-import type { ButtonProps, ButtonEmits, ButtonInstance } from "./types";
 import { throttle } from "lodash-es";
+import type { ButtonProps, ButtonEmits, ButtonInstance } from "./types";
 import { BUTTON_GROUP_CTX_KEY } from "./constants";
 import AuIcon from "../Icon/Icon.vue";
 
@@ -73,6 +73,9 @@ const iconStyle = computed(() => ({
 
 defineExpose<ButtonInstance>({
   ref: _ref,
+  disabled,
+  size,
+  type,
 });
 </script>
 

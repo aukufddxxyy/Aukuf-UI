@@ -6,6 +6,7 @@
   <au-button
     size="small"
     :disable="true"
+    :loading="false"
   >
     button
   </au-button>

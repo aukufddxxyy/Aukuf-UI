@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "Components library for Aukuf",
   "type": "module",
-  "main": "./dist/umd/aukuf-ui.umd.cjs",
-  "module": "./dist/es/aukuf-ui.js",
-  "types": "./dist/types/core/index.d.ts",
   "files": [
     "dist"
   ],
+  "sideEffects": [
+    "./dist/index.css"
+  ],
+  "main": "./dist/umd/aukuf-ui.umd.cjs",
+  "module": "./dist/es/aukuf-ui.js",
+  "types": "./dist/types/core/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/es/aukuf-ui.js",
@@ -20,9 +23,6 @@
       "require": "./dist/"
     }
   },
-  "sideEffects": [
-    "./dist/index.css"
-  ],
   "scripts": {
     "build": "run-s build-only move-style",
     "build-only": "run-p build-umd build-es",
@@ -35,11 +35,11 @@
   "license": "ISC",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "async-validator": "^4.2.5",
-    "iconify-icon": "^2.1.0",
-    "@iconify-json/mdi": "^1.1.66"
+    "async-validator": "^4.2.5"
   },
   "devDependencies": {
+    "@iconify-json/mdi": "^1.1.66",
+    "@iconify/vue": "^4.1.2",
     "vite-plugin-dts": "^3.9.1"
   },
   "peerDependencies": {

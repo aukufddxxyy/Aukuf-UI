@@ -2,9 +2,9 @@ import { h } from "vue";
 import { describe, it, expect, test } from "vitest";
 import { mount } from "@vue/test-utils";
 
+import Icon from "../Icon/Icon.vue";
 import Button from "./Button.vue";
 import ButtonGroup from "./ButtonGroup.vue";
-import Icon from "../Icon/Icon.vue";
 
 describe("Button.vue", () => {
   //   class

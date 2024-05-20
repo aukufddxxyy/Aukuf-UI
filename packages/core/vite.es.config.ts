@@ -24,9 +24,9 @@ export default defineConfig({
     rollupOptions: {
       external: [
         "vue",
-        "iconify-icon",
-        "@iconify-json/mdi",
         "@popperjs/core",
+        "@iconify/vue",
+        "@iconify-json/mdi",
         "async-validator",
       ],
       output: {

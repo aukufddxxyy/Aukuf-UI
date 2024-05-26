@@ -10,16 +10,15 @@ export interface ButtonProps {
   size?: ButtonSize;
   type?: ButtonType;
   plain?: boolean;
+  shape?: ButtonShape;
   nativeType?: NativeType;
   icon?: string;
   loading?: boolean;
   disabled?: boolean;
-  round?: boolean;
-  circle?: boolean;
   block?: boolean;
   autofocus?: boolean;
-  useThrottle?: boolean;
   loadingIcon?: string;
+  useThrottle?: boolean;
   throttleDuration?: number;
 }
 

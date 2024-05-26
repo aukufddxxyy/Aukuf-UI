@@ -8,8 +8,8 @@
       [`au-button--${type}`]: type,
       [`au-button--${size}`]: size,
       'is-plain': plain,
-      'is-round': round,
-      'is-circle': circle,
+      'is-round': shape === 'round',
+      'is-circle': shape === 'circle',
       'is-loading': loading,
       'is-disabled': disabled,
     }"
@@ -23,7 +23,6 @@
       <slot name="loading">
         <au-icon
           :loading="true"
-          :style="iconStyle"
           :icon="loadingIcon ?? 'mdi:loading'"
         />
       </slot>
@@ -31,9 +30,10 @@
     <au-icon
       v-if="icon && !loading"
       :icon="icon"
-      :style="iconStyle"
     />
-    <slot></slot>
+    <span v-if="slots.default">
+      <slot></slot>
+    </span>
   </component>
 </template>
 
@@ -67,9 +67,6 @@ const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration);
 const size = computed(() => ctx?.size ?? props?.size ?? "default");
 const type = computed(() => ctx?.type ?? props?.type ?? "primary");
 const disabled = computed(() => ctx?.disabled ?? props?.disabled ?? false);
-const iconStyle = computed(() => ({
-  marginRight: slots.default ? "8px" : void 0,
-}));
 
 defineExpose<ButtonInstance>({
   ref: _ref,

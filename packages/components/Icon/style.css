@@ -1,5 +1,17 @@
+.au-icon {
+  --color: inherit;
+  height: 1em;
+  width: 1em;
+  line-height: 1em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: currentColor;
+  color: var(--color);
+  font-size: inherit;
+}
 .loading-icon {
-  /* 无限循环旋转动画 */
   animation: loading 1s infinite linear;
 }
 

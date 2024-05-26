@@ -4,5 +4,5 @@ import "@aukuf-ui/theme/index.css";
 
 const installer = makeInstaller(components);
 
-export * from "@aukuf-ui/components";
+export * from "../components";
 export default installer;

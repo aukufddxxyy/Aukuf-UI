@@ -20,11 +20,12 @@
 }
 
 .au-button {
+  --au-button-size: 32px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   line-height: 1;
-  height: 32px;
+  height: var(--au-button-size);
   white-space: nowrap;
   cursor: pointer;
   color: var(--au-button-text-color);
@@ -73,6 +74,7 @@
   &.is-circle {
     border-radius: 50%;
     padding: 8px;
+    width: var(--au-button-size);
   }
   /*disabled*/
   &.is-loading,
@@ -88,9 +90,16 @@
     background-color: var(--au-button-disabled-bg-color);
     border-color: var(--au-button-disabled-border-color);
   }
-  [class*="er-icon"] {
+  [class*="au-icon"] {
     width: 1em;
     height: 1em;
+  }
+  [class*="au-icon"] + span {
+    margin-left: 8px;
+  }
+  > span {
+    align-items: center;
+    display: inline-flex;
   }
 }
 @each $val in primary, success, warning, info, danger {

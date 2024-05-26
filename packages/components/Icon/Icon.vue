@@ -29,16 +29,5 @@ const innerProps = computed(() => {
 </script>
 
 <style scoped>
-.loading-icon {
-  animation: loading 1s infinite linear;
-}
-
-@keyframes loading {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+@import "./style.css";
 </style>

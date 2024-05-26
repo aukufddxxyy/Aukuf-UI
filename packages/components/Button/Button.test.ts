@@ -33,11 +33,9 @@ describe("Button.vue", () => {
     });
   });
 
-  //   plain round circle
+  //   plain
   it.each([
     ["plain", "is-plain"],
-    ["round", "is-round"],
-    ["circle", "is-circle"],
     ["disabled", "is-disabled"],
     ["loading", "is-loading"],
   ])("should has the correct class when %s prop is set", (prop, className) => {
@@ -51,6 +49,22 @@ describe("Button.vue", () => {
     });
     expect(wrapper.classes()).toContain(className);
   });
+
+  // shape
+  it.each([
+    ["round", "is-round"],
+    ["circle", "is-circle"],
+  ])(
+    "should has the correct shape class when shape prop is set",
+    (prop, className) => {
+      const wrapper = mount(Button, {
+        props: {
+          shape: prop as any,
+        },
+      });
+      expect(wrapper.classes()).toContain(className);
+    },
+  );
 
   //   native type attribute
   it("should has the correct native type attribute", () => {
@@ -94,16 +108,18 @@ describe("Button.vue", () => {
       props: {
         loading: true,
       },
-      global: {
-        stubs: ["AuIcon"],
-      },
+      // global: {
+      //   stubs: ["AuIcon"],
+      // },
     });
     // expect(wrapper.findComponent(Icon).exists()).toBe(true);
     const iconElement = wrapper.findComponent(Icon);
+    const svgElement = iconElement?.findComponent("svg");
 
-    expect(wrapper.find(".loading-icon").exists()).toBe(true);
+    expect(wrapper.find(".au-icon").exists()).toBe(true);
     expect(iconElement.exists()).toBeTruthy();
-    expect(iconElement.attributes("icon")).toBe("mdi:loading");
+    expect(svgElement.exists()).toBeTruthy();
+    expect(svgElement.classes()).toContain("loading-icon");
     await wrapper.trigger("click");
     expect(wrapper.emitted("click")).toBeUndefined();
   });
@@ -116,12 +132,6 @@ describe("ButtonGroup.vue", () => {
         default: [Button, Button],
       },
     });
-    // const wrapper = mount(() => (
-    //   // <ButtonGroup>
-    //   //   <Button>button 1</Button>
-    //   //   <Button>button 2</Button>
-    //   // </ButtonGroup>
-    // ));
 
     expect(wrapper.classes()).toContain("au-button-group");
   });

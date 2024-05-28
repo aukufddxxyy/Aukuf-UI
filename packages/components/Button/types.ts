@@ -1,23 +1,26 @@
 import type { Component, Ref, ComputedRef } from "vue";
 
 export type ButtonType = "primary" | "success" | "warning" | "danger" | "info";
-export type ButtonSize = "large" | "default" | "small";
+export type ButtonSize = "large" | "middle" | "small";
 export type ButtonShape = "circle" | "round" | "default";
 export type NativeType = "button" | "submit" | "reset";
 
 export interface ButtonProps {
   tag?: string | Component;
-  size?: ButtonSize;
   type?: ButtonType;
-  plain?: boolean;
+  size?: ButtonSize;
   shape?: ButtonShape;
   nativeType?: NativeType;
-  icon?: string;
+
+  plain?: boolean;
   loading?: boolean;
   disabled?: boolean;
   block?: boolean;
   autofocus?: boolean;
+
+  icon?: string;
   loadingIcon?: string;
+
   useThrottle?: boolean;
   throttleDuration?: number;
 }

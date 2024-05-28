@@ -1,6 +1,3 @@
-.au-button-group {
-  --au-button-group-border-color: var(--au-border-color-lighter);
-}
 .au-button {
   --au-button-font-weight: var(--au-font-weight-primary);
   --au-button-border-color: var(--au-border-color);
@@ -17,6 +14,10 @@
   --au-button-active-bg-color: var(--au-button-hover-bg-color);
   --au-button-outline-color: var(--au-color-primary-light-5);
   --au-button-active-color: var(--au-text-color-primary);
+}
+
+.au-button-group {
+  --au-button-group-border-color: var(--au-border-color-lighter);
 }
 
 .au-button {
@@ -66,16 +67,6 @@
     --au-button-hover-bg-color: var(--au-fill-color-blank);
     --au-button-hover-border-color: var(--au-color-primary);
   }
-  /*round*/
-  &.is-round {
-    border-radius: var(--au-border-radius-round);
-  }
-  /*circle*/
-  &.is-circle {
-    border-radius: 50%;
-    padding: 8px;
-    width: var(--au-button-size);
-  }
   /*disabled*/
   &.is-loading,
   &.is-disabled,
@@ -102,6 +93,7 @@
     display: inline-flex;
   }
 }
+
 @each $val in primary, success, warning, info, danger {
   .au-button--$(val) {
     --au-button-text-color: var(--au-color-white);
@@ -132,6 +124,7 @@
     --au-button-disabled-border-color: var(--au-color-$(val)-light-8);
   }
 }
+
 .au-button--large {
   --au-button-size: 40px;
   height: var(--au-button-size);
@@ -144,6 +137,7 @@
     padding: 12px;
   }
 }
+
 .au-button--small {
   --au-button-size: 24px;
   height: var(--au-button-size);
@@ -151,14 +145,25 @@
   font-size: 12px;
   border-radius: calc(var(--au-border-radius-base) - 1px);
   /*circle*/
-  &.is-circle {
+  &.au-button--circle {
     border-radius: 50%;
     padding: 5px;
   }
-  [class*="er-icon"] {
+  [class*="au-icon"] {
     width: 12px;
     height: 12px;
   }
+}
+
+/*round*/
+.au-button--round {
+  border-radius: var(--au-border-radius-round);
+}
+/*circle*/
+.au-button--circle {
+  border-radius: 50%;
+  padding: 8px;
+  width: var(--au-button-size);
 }
 
 .au-button-group {
@@ -197,11 +202,11 @@
       border-top-left-radius: var(--au-border-radius-base);
       border-bottom-left-radius: var(--au-border-radius-base);
 
-      &.is-round {
+      &.au-button--round {
         border-radius: var(--au-border-radius-round);
       }
 
-      &.is-circle {
+      &.au-button--circle {
         border-radius: 50%;
       }
     }

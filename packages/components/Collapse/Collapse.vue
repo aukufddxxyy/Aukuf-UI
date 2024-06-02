@@ -6,22 +6,19 @@
 
 <script setup lang="ts">
 import type { CollapseProps, CollapseEmits, CollapseItemName } from "./types";
-import { provide, ref, watch } from "vue";
+import { provide, ref, watch, watchEffect } from "vue";
+import { debugWarn } from "@aukuf-ui/utils";
 import { COLLAPSE_CTX_KEY } from "./constants";
 
+const COMP_NAME = "AuCollapse" as const;
+
 defineOptions({
-  name: "AuCollapse",
+  name: COMP_NAME,
 });
 
 const props = defineProps<CollapseProps>();
 const emits = defineEmits<CollapseEmits>();
 const activeNames = ref(props.modelValue || []);
-
-if (props.accordion && activeNames.value.length > 1) {
-  console.warn(
-    "[AuCollapse]: The accordion mode should have one active name at most.",
-  );
-}
 
 const handleItemClick = (item: CollapseItemName) => {
   let _activeNames = [...activeNames.value];
@@ -44,6 +41,15 @@ const updateActiveNames = (newNames: CollapseItemName[]) => {
   emits("update:modelValue", newNames);
   emits("change", newNames);
 };
+
+watchEffect(() => {
+  if (props.accordion && activeNames.value.length > 1) {
+    debugWarn(
+      COMP_NAME,
+      "The accordion mode should have one active name at most.",
+    );
+  }
+});
 
 watch(
   () => props.modelValue,

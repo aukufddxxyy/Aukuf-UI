@@ -17,19 +17,24 @@
       <span class="au-collapse-item__title">
         <slot name="title">{{ title }}</slot>
       </span>
-      <au-icon icon="mdi:chevron-right"></au-icon>
+      <au-icon
+        icon="mdi:chevron-right"
+        class="header-angle"
+      ></au-icon>
     </div>
-    <div
-      class="au-collapse-item__wrapper"
-      v-show="isActive"
-    >
+    <transition name="slide" v-on="transitionEvents">
       <div
-        class="au-collapse-item__content"
-        :id="`item-content-${name}`"
+        class="au-collapse-item__wrapper"
+        v-show="isActive"
       >
-        <slot></slot>
+        <div
+          class="au-collapse-item__content"
+          :id="`item-content-${name}`"
+        >
+          <slot></slot>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -39,6 +44,7 @@ import { includes } from "lodash-es";
 import type { CollapseItemProps } from "./types";
 import { COLLAPSE_CTX_KEY } from "./constants";
 import AuIcon from "../Icon/Icon.vue";
+import transitionEvents from "./transitionEvents";
 
 defineOptions({
   name: "AuCollapseItem",

@@ -9,13 +9,13 @@
   "sideEffects": [
     "./dist/index.css"
   ],
-  "main": "./dist/umd/aukuf-ui.umd.cjs",
-  "module": "./dist/es/aukuf-ui.js",
+  "main": "./dist/umd/index.umd.cjs",
+  "module": "./dist/es/index.js",
   "types": "./dist/types/core/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/es/aukuf-ui.js",
-      "require": "./dist/umd/aukuf-ui.umd.cjs",
+      "import": "./dist/es/index.js",
+      "require": "./dist/umd/index.umd.cjs",
       "types": "./dist/types/core/index.d.ts"
     },
     "./dist/": {
@@ -24,10 +24,12 @@
     }
   },
   "scripts": {
-    "build": "run-s build-only",
-    "build-only": "run-p build-umd build-es",
+    "build": "run-p build-umd build-es",
+    "build:watch": "run-p build-umd:watch build-es:watch",
     "build-umd": "vite build --config vite.umd.config.ts",
+    "build-umd:watch": "vite build --watch --config vite.umd.config.ts",
     "build-es": "vite build --config vite.es.config.ts",
+    "build-es:watch": "vite build --watch --config vite.es.config.ts",
     "move-style": "move-file dist/es/index.css dist/index.css"
   },
   "keywords": [],
@@ -40,6 +42,9 @@
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.66",
     "@iconify/vue": "^4.1.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "terser": "^5.31.0",
+    "vite-plugin-compression2": "^1.1.1",
     "vite-plugin-dts": "^3.9.1"
   },
   "peerDependencies": {

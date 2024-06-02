@@ -7,17 +7,14 @@
     :class="{
       [`au-button--${type}`]: type,
       [`au-button--${size}`]: size,
+      [`au-button--${shape}`]: shape,
       'is-plain': plain,
-      'is-round': shape === 'round',
-      'is-circle': shape === 'circle',
       'is-loading': loading,
       'is-disabled': disabled,
+      'is-block': block,
     }"
     :disabled="disabled || loading"
-    @click="
-      (e: MouseEvent) =>
-        useThrottle ? handleBtnClickThrottle(e) : handleBtnClick(e)
-    "
+    @click="(e: MouseEvent) => onClick(e)"
   >
     <template v-if="loading">
       <slot name="loading">
@@ -51,7 +48,8 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   tag: "button",
   nativeType: "button",
   type: "primary",
-  size: "default",
+  size: "middle",
+  shape: "default",
   disabled: false,
   throttleDuration: 300,
 });
@@ -67,6 +65,9 @@ const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration);
 const size = computed(() => ctx?.size ?? props?.size ?? "default");
 const type = computed(() => ctx?.type ?? props?.type ?? "primary");
 const disabled = computed(() => ctx?.disabled ?? props?.disabled ?? false);
+const onClick = computed(() =>
+  props.useThrottle ? handleBtnClickThrottle : handleBtnClick,
+);
 
 defineExpose<ButtonInstance>({
   ref: _ref,

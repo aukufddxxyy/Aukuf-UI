@@ -24,7 +24,7 @@
     }
   },
   "scripts": {
-    "build": "run-s build-only move-style",
+    "build": "run-s build-only",
     "build-only": "run-p build-umd build-es",
     "build-umd": "vite build --config vite.umd.config.ts",
     "build-es": "vite build --config vite.es.config.ts",

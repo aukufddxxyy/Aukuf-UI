@@ -47,6 +47,37 @@ export default defineConfig({
       tsconfigPath: "../../tsconfig.build.json",
       outDir: "dist/types",
     }),
+    // hooksPlugin({
+    //   rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
+    //   afterBuild: moveEsStyles,
+    // }),
+    terser({
+      compress: {
+        sequences: IS_PROD,
+        arguments: IS_PROD,
+        drop_console: IS_PROD && ["log"],
+        drop_debugger: IS_PROD,
+        passes: IS_PROD ? 4 : 1,
+        global_defs: {
+          "@DEV": JSON.stringify(IS_DEV),
+          "@PROD": JSON.stringify(IS_PROD),
+          "@TEST": JSON.stringify(IS_TEST),
+        },
+      },
+      format: {
+        semicolons: false,
+        shorthand: IS_PROD,
+        braces: !IS_PROD,
+        beautify: !IS_PROD,
+        comments: !IS_PROD,
+      },
+      mangle: {
+        toplevel: IS_PROD,
+        eval: IS_PROD,
+        keep_classnames: IS_DEV,
+        keep_fnames: IS_DEV,
+      },
+    }),
   ],
   build: {
     outDir: "dist/es",

@@ -7,7 +7,8 @@
     "dist"
   ],
   "sideEffects": [
-    "./dist/index.css"
+    "./dist/index.css",
+    "./dist/theme/*.css"
   ],
   "main": "./dist/umd/index.umd.cjs",
   "module": "./dist/es/index.js",
@@ -24,13 +25,12 @@
     }
   },
   "scripts": {
-    "build": "run-p build-umd build-es",
-    "build:watch": "run-p build-umd:watch build-es:watch",
-    "build-umd": "vite build --config vite.umd.config.ts",
-    "build-umd:watch": "vite build --watch --config vite.umd.config.ts",
+    "build": "run-p build-es build-umd",
     "build-es": "vite build --config vite.es.config.ts",
+    "build-umd": "vite build --config vite.umd.config.ts",
+    "build:watch": "run-p build-es:watch build-umd:watch",
     "build-es:watch": "vite build --watch --config vite.es.config.ts",
-    "move-style": "move-file dist/es/index.css dist/index.css"
+    "build-umd:watch": "vite build --watch --config vite.umd.config.ts"
   },
   "keywords": [],
   "author": "Aukuf",

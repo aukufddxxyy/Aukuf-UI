@@ -1,11 +1,13 @@
-import { defineConfig } from "vite";
 import { resolve } from "path";
+import { defineConfig } from "vite";
+
 import dts from "vite-plugin-dts";
 import vue from "@vitejs/plugin-vue";
-import hooksPlugin from "./hooksPlugin";
 import terser from "@rollup/plugin-terser";
+
 import { IS_DEV, IS_PROD, IS_TEST } from "./consts";
 import { moveEsStyles, getDirectoriesSync } from "./utils";
+import hooksPlugin from "./hooksPlugin";
 
 export default defineConfig({
   plugins: [
@@ -14,10 +16,10 @@ export default defineConfig({
       tsconfigPath: "../../tsconfig.build.json",
       outDir: "dist/types",
     }),
-    // hooksPlugin({
-    //   rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
-    //   afterBuild: moveEsStyles,
-    // }),
+    hooksPlugin({
+      rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
+      afterBuild: moveEsStyles,
+    }),
     terser({
       compress: {
         sequences: IS_PROD,
@@ -50,6 +52,7 @@ export default defineConfig({
     outDir: "dist/es",
     minify: false,
     cssCodeSplit: true,
+    sourcemap: !IS_PROD,
     lib: {
       entry: resolve(__dirname, "./index.ts"),
       name: "AukufUI",

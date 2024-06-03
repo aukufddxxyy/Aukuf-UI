@@ -1,6 +1,7 @@
-import shell from "shelljs";
 import { readdir, readdirSync, readFile } from "fs";
 import { defer, delay, filter, map } from "lodash-es";
+import shell from "shelljs";
+
 import { TRY_MOVE_STYLES_DELAY } from "./consts";
 
 export function moveEsStyles() {

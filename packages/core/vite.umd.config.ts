@@ -1,8 +1,10 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import { compression } from "vite-plugin-compression2";
 import { resolve } from "path";
+import { defineConfig } from "vite";
+import { compression } from "vite-plugin-compression2";
+
+import vue from "@vitejs/plugin-vue";
 import terser from "@rollup/plugin-terser";
+
 import hooksPlugin from "./hooksPlugin";
 import { moveUmdStyles } from "./utils";
 import { IS_DEV, IS_PROD, IS_TEST } from "./consts";
@@ -11,12 +13,12 @@ export default defineConfig({
   plugins: [
     vue(),
     compression({
-      include: /\.(cjs|css)$/i,
+      include: /.(cjs|css)$/i,
     }),
-    // hooksPlugin({
-    //   rmFiles: ["./dist/umd", "./dist/index.css"],
-    //   afterBuild: moveUmdStyles,
-    // }),
+    hooksPlugin({
+      rmFiles: ["./dist/umd", "./dist/index.css"],
+      afterBuild: moveUmdStyles,
+    }),
     terser({
       compress: {
         drop_console: ["log"],

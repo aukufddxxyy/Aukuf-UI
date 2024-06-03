@@ -47,10 +47,10 @@ export default defineConfig({
       tsconfigPath: "../../tsconfig.build.json",
       outDir: "dist/types",
     }),
-    // hooksPlugin({
-    //   rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
-    //   afterBuild: moveEsStyles,
-    // }),
+    hooksPlugin({
+      rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
+      afterBuild: moveEsStyles,
+    }),
     terser({
       compress: {
         sequences: IS_PROD,

@@ -20,14 +20,26 @@
   <au-button type="info">button</au-button>
   <au-button tag="a">button</au-button>
   <div>
+    <au-icon icon="mdi:loading"></au-icon>
+  </div>
+  <div>
     <au-collapse>
-      <au-collapse-item name="1" title="title1">
+      <au-collapse-item
+        name="1"
+        title="title1"
+      >
         content1
       </au-collapse-item>
-      <au-collapse-item name="2" title="title2">
+      <au-collapse-item
+        name="2"
+        title="title2"
+      >
         content2
       </au-collapse-item>
-      <au-collapse-item name="3" title="title3">
+      <au-collapse-item
+        name="3"
+        title="title3"
+      >
         content3
       </au-collapse-item>
     </au-collapse>

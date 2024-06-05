@@ -1,22 +1,48 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
-import dts from "vite-plugin-dts";
-import { readdirSync } from "fs";
-import { filter, map } from "lodash-es";
+import { defineConfig } from "vite";
 
-// const COMP_NAMES = ["Alter", "Button", "Icon"] as const;
-const getDirectoriesSync = (basePath: string) => {
-  const entries = readdirSync(basePath, { withFileTypes: true });
-  return map(
-    filter(entries, (entry) => entry.isDirectory()),
-    (entry) => entry.name,
-  );
-};
+import dts from "vite-plugin-dts";
+import vue from "@vitejs/plugin-vue";
+import terser from "@rollup/plugin-terser";
+
+import { IS_DEV, IS_PROD, IS_TEST } from "./consts";
+import { moveEsStyles, getDirectoriesSync } from "./utils";
+import hooksPlugin from "./hooksPlugin";
 
 export default defineConfig({
   plugins: [
     vue(),
+    hooksPlugin({
+      rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
+      afterBuild: moveEsStyles,
+    }),
+    terser({
+      compress: {
+        sequences: IS_PROD,
+        arguments: IS_PROD,
+        drop_console: IS_PROD && ["log"],
+        drop_debugger: IS_PROD,
+        passes: IS_PROD ? 4 : 1,
+        global_defs: {
+          "@DEV": JSON.stringify(IS_DEV),
+          "@PROD": JSON.stringify(IS_PROD),
+          "@TEST": JSON.stringify(IS_TEST),
+        },
+      },
+      format: {
+        semicolons: false,
+        shorthand: IS_PROD,
+        braces: !IS_PROD,
+        beautify: !IS_PROD,
+        comments: !IS_PROD,
+      },
+      mangle: {
+        toplevel: IS_PROD,
+        eval: IS_PROD,
+        keep_classnames: IS_DEV,
+        keep_fnames: IS_DEV,
+      },
+    }),
     dts({
       tsconfigPath: "../../tsconfig.build.json",
       outDir: "dist/types",
@@ -24,23 +50,32 @@ export default defineConfig({
   ],
   build: {
     outDir: "dist/es",
+    minify: false,
+    cssCodeSplit: true,
+    sourcemap: !IS_PROD,
     lib: {
       entry: resolve(__dirname, "./index.ts"),
       name: "AukufUI",
-      fileName: "aukuf-ui",
+      fileName: "index",
       formats: ["es"],
     },
     rollupOptions: {
       external: [
         "vue",
         "@popperjs/core",
+        "async-validator",
         "@iconify/vue",
         "@iconify-json/mdi",
-        "async-validator",
       ],
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === "style.css") return "index.css";
+          if (
+            assetInfo.type === "asset" &&
+            /\.(css)$/i.test(assetInfo.name as string)
+          ) {
+            return "theme/[name].[ext]";
+          }
           return assetInfo.name as string;
         },
         manualChunks(id) {
@@ -50,7 +85,10 @@ export default defineConfig({
           if (id.includes("/packages/hooks")) {
             return "hooks";
           }
-          if (id.includes("/packages/utils")) {
+          if (
+            id.includes("/packages/utils") ||
+            id.includes("plugin-vue:export-helper")
+          ) {
             return "utils";
           }
           for (const compName of getDirectoriesSync("../components")) {

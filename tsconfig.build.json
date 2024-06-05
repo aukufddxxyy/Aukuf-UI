@@ -11,6 +11,7 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
+    "removeComments": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
@@ -20,15 +21,19 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "types": ["node"],
+    "baseUrl": "./",
+    "paths": {
+      "@aukuf-ui/components": ["./packages/components"]
+    }
   },
   "include": [
+    "env.d.ts",
     "packages/core/index.ts",
     "packages/hooks/**/*.ts",
     "packages/utils/**/*.ts",
-    "packages/components/index.ts",
-    "packages/components/**/*.ts",
-    "packages/components/**/*.vue"
+    "packages/components/**/*.ts"
   ],
   "exclude": ["packages/components/vite.config.ts"]
 }

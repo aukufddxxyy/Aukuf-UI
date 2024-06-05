@@ -6,12 +6,11 @@ import { TRY_MOVE_STYLES_DELAY } from "./consts";
 
 export function moveEsStyles() {
   readdir("./dist/es/theme", (error) => {
-    if (error) {
-      readdir("./dist/theme", (error) => {
-        if (error) return delay(moveEsStyles, TRY_MOVE_STYLES_DELAY);
-      });
-    }
-    defer(() => shell.mv("./dist/es/theme", "./dist"));
+    if (!error) return defer(() => shell.mv("./dist/es/theme", "./dist"));
+    readdir("./dist/theme", (error) => {
+      if (!error) return;
+      return delay(moveEsStyles, TRY_MOVE_STYLES_DELAY);
+    });
   });
 }
 

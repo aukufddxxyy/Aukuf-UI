@@ -25,5 +25,5 @@ provide(
 </script>
 
 <style scoped>
-@import "./style.css";
+@import "../style/style.css";
 </style>

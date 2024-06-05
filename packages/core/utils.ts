@@ -5,13 +5,14 @@ import shell from "shelljs";
 import { TRY_MOVE_STYLES_DELAY } from "./consts";
 
 export function moveEsStyles() {
-  readdir("./dist/es/theme", (error) => {
-    if (error) {
-      readdir("./dist/theme", (error) => {
-        if (error) return delay(moveEsStyles, TRY_MOVE_STYLES_DELAY);
+  readdir("./dist/es/theme", (error1) => {
+    if (error1) {
+      readdir("./dist/theme", (error2) => {
+        if (error2) return delay(moveEsStyles, TRY_MOVE_STYLES_DELAY);
       });
+    } else {
+      defer(() => shell.mv("./dist/es/theme", "./dist"));
     }
-    defer(() => shell.mv("./dist/es/theme", "./dist"));
   });
 }
 

@@ -39,7 +39,7 @@ import { computed, ref, inject } from "vue";
 import { throttle } from "lodash-es";
 import type { ButtonProps, ButtonEmits, ButtonInstance } from "./types";
 import { BUTTON_GROUP_CTX_KEY } from "./constants";
-import AuIcon from "../Icon/Icon.vue";
+import AuIcon from "../../Icon/src/Icon.vue";
 
 defineOptions({
   name: "AuButton",
@@ -78,5 +78,5 @@ defineExpose<ButtonInstance>({
 </script>
 
 <style scoped>
-@import "./style.css";
+@import "../style/style.css";
 </style>

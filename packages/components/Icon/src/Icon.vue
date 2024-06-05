@@ -29,5 +29,5 @@ const innerProps = computed(() => {
 </script>
 
 <style scoped>
-@import "./style.css";
+@import "../style/style.css";
 </style>

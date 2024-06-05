@@ -22,7 +22,10 @@
         class="header-angle"
       ></au-icon>
     </div>
-    <transition name="slide" v-on="transitionEvents">
+    <transition
+      name="slide"
+      v-on="transitionEvents"
+    >
       <div
         class="au-collapse-item__wrapper"
         v-show="isActive"
@@ -43,7 +46,7 @@ import { inject, computed } from "vue";
 import { includes } from "lodash-es";
 import type { CollapseItemProps } from "./types";
 import { COLLAPSE_CTX_KEY } from "./constants";
-import AuIcon from "../Icon/Icon.vue";
+import AuIcon from "../../Icon/src/Icon.vue";
 import transitionEvents from "./transitionEvents";
 
 defineOptions({
@@ -61,5 +64,5 @@ const handleClick = () => {
 </script>
 
 <style lang="css" scoped>
-@import "./style.css";
+@import "../style/style.css";
 </style>

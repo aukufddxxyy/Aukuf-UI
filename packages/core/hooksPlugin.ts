@@ -18,8 +18,10 @@ const hooksPlugin: HooksPlugin = ({
   return {
     name: "custom-hooks-plugin",
     buildStart() {
-      each(rmFiles, (file) => shell.rm("-rf", file));
-      isFunction(beforeBuild) && beforeBuild();
+      shell.rm("-rf", rmFiles);
+      setTimeout(() => {
+        isFunction(beforeBuild) && beforeBuild();
+      }, 100);
     },
     buildEnd(err?: Error) {
       !err && isFunction(afterBuild) && afterBuild();

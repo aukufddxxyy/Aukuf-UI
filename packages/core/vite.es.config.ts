@@ -12,10 +12,6 @@ import hooksPlugin from "./hooksPlugin";
 export default defineConfig({
   plugins: [
     vue(),
-    dts({
-      tsconfigPath: "../../tsconfig.build.json",
-      outDir: "dist/types",
-    }),
     hooksPlugin({
       rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
       afterBuild: moveEsStyles,
@@ -47,6 +43,10 @@ export default defineConfig({
         keep_fnames: IS_DEV,
       },
     }),
+    dts({
+      tsconfigPath: "../../tsconfig.build.json",
+      outDir: "dist/types",
+    }),
   ],
   build: {
     outDir: "dist/es",
@@ -63,9 +63,9 @@ export default defineConfig({
       external: [
         "vue",
         "@popperjs/core",
+        "async-validator",
         "@iconify/vue",
         "@iconify-json/mdi",
-        "async-validator",
       ],
       output: {
         assetFileNames: (assetInfo) => {

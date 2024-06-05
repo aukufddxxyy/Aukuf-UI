@@ -48,6 +48,6 @@
     "vite-plugin-dts": "^3.9.1"
   },
   "peerDependencies": {
-    "vue": "^3.4.21"
+    "vue": "^3.4.27"
   }
 }

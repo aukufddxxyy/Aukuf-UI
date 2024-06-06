@@ -1,7 +1,7 @@
-import { describe, it, expect, test } from "vitest";
+import { describe, it, expect, test, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 
-import Icon from "../../Icon/Icon.vue";
+import Icon from "../../Icon/src/Icon.vue";
 import Button from "../src/Button.vue";
 import ButtonGroup from "../src/ButtonGroup.vue";
 
@@ -51,8 +51,8 @@ describe("Button.vue", () => {
 
   // shape
   it.each([
-    ["round", "is-round"],
-    ["circle", "is-circle"],
+    ["round", "au-button--round"],
+    ["circle", "au-button--circle"],
   ])(
     "should has the correct shape class when shape prop is set",
     (prop, className) => {
@@ -121,6 +121,26 @@ describe("Button.vue", () => {
     expect(svgElement.classes()).toContain("loading-icon");
     await wrapper.trigger("click");
     expect(wrapper.emitted("click")).toBeUndefined();
+  });
+
+  // throttle
+  it.each([
+    ["withoutThrottle", false],
+    ["withThrottle", true],
+  ])("emits click event %s", async (_, useThrottle) => {
+    const clickSpy = vi.fn();
+    const wrapper = mount(() => (
+      <Button
+        onClick={clickSpy}
+        {...{
+          useThrottle,
+          throttleDuration: 400,
+        }}
+      />
+    ));
+
+    await wrapper.get("button").trigger("click");
+    expect(clickSpy).toHaveBeenCalled();
   });
 });
 

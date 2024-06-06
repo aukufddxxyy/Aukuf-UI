@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { AuButton, AuIcon, AuCollapse, AuCollapseItem } from "aukuf-ui";
 // import { AuButton } from "aukuf-ui";
 </script>
 
 <template>
   <au-button size="small">button</au-button>
-  <au-button size="default">button</au-button>
+  <au-button size="middle">button</au-button>
   <au-button size="large">button</au-button>
   <au-button icon="mdi:magnify">button</au-button>
   <au-button loading>button</au-button>
@@ -20,10 +21,16 @@
   <au-button type="info">button</au-button>
   <au-button tag="a">button</au-button>
   <div>
-    <au-icon icon="mdi:loading"></au-icon>
+    <au-icon
+      icon="mdi:loading"
+      :loading="true"
+      id="au-icon"
+      color="red"
+      title="my-icon"
+    ></au-icon>
   </div>
   <div>
-    <au-collapse>
+    <au-collapse :model-value="['1']">
       <au-collapse-item
         name="1"
         title="title1"

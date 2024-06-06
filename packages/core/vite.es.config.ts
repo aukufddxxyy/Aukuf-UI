@@ -17,7 +17,7 @@ export default defineConfig({
       outDir: "dist/types",
     }),
     hooksPlugin({
-      rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
+      // rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
       afterBuild: moveEsStyles,
     }),
     terser({

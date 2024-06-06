@@ -6,7 +6,7 @@ import { AuButton, AuButtonGroup } from "aukuf-ui";
 type Story = StoryObj<typeof AuButton> & { argTypes?: ArgTypes };
 
 const meta: Meta<typeof AuButton> = {
-  title: "Example/Button",
+  title: "Button",
   component: AuButton,
   subcomponents: { ButtonGroup: AuButtonGroup },
   tags: ["autodocs"],
@@ -17,7 +17,11 @@ const meta: Meta<typeof AuButton> = {
     },
     size: {
       control: { type: "select" },
-      options: ["large", "default", "small", ""],
+      options: ["large", "middle", "small", ""],
+    },
+    shape: {
+      control: { type: "select" },
+      options: ["circle", "round", ""],
     },
     disabled: {
       control: "boolean",
@@ -90,6 +94,7 @@ export const Circle: Story = {
     content: { control: { type: "text" } },
   },
   args: {
+    shape: "circle",
     icon: "mdi:magnify",
   },
   render: (args) => ({
@@ -124,7 +129,7 @@ export const Group: Story & { args: { content1: string; content2: string } } = {
     },
   },
   args: {
-    round: true,
+    shape: "round",
     content1: "Button1",
     content2: "Button2",
   },
@@ -133,18 +138,6 @@ export const Group: Story & { args: { content1: string; content2: string } } = {
     setup() {
       return { args };
     },
-    // template: h(
-    //   AuButtonGroup,
-    //   {
-    //     type: args.groupType,
-    //     size: args.groupSize,
-    //     disabled: args.groupDisabled,
-    //   },
-    //   [
-    //     h(AuButton, { ...args }, args.content1),
-    //     h(AuButton, { ...args }, args.content2),
-    //   ],
-    // ),
     template: container(`
        <au-button-group :type="args.groupType" :size="args.groupSize" :disabled="args.groupDisabled">
          <au-button v-bind="args">{{args.content1}}</au-button>

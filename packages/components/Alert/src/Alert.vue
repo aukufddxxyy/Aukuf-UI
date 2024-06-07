@@ -5,8 +5,8 @@
       class="au-alert"
       role="alert"
       :class="{
-        [`au-alert--${type}`]: type,
-        [`au-alert--${effect}`]: effect,
+        [`au-alert__${type}`]: type,
+        [`au-alert__${effect}`]: effect,
         'text-center': center,
       }"
     >
@@ -26,7 +26,10 @@
             {{ title }}
           </slot>
         </span>
-        <p>
+        <p
+          v-if="withDescription"
+          class="au-alert__description"
+        >
           <slot>{{ description }}</slot>
         </p>
         <div

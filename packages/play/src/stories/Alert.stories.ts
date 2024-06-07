@@ -1,6 +1,5 @@
 import type { Meta, StoryObj, ArgTypes } from "@storybook/vue3";
 import { ref, watch } from "vue";
-import { fn, within, userEvent, expect } from "@storybook/test";
 
 import { AuAlert } from "aukuf-ui";
 import type { AlertInstance } from "aukuf-ui";
@@ -15,6 +14,10 @@ const meta: Meta<typeof AuAlert> = {
     type: {
       control: { type: "select" },
       options: ["success", "info", "warning", "danger"],
+    },
+    effect: {
+      control: { type: "select" },
+      options: ["dark", "light", ""],
     },
     closable: {
       control: "boolean",

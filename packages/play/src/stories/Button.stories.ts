@@ -23,6 +23,9 @@ const meta: Meta<typeof AuButton> = {
       control: { type: "select" },
       options: ["circle", "round", ""],
     },
+    block: {
+      control: "boolean",
+    },
     disabled: {
       control: "boolean",
     },
@@ -87,23 +90,6 @@ export const Default: Story & { args: { content: string } } = {
 
     expect(args.onClick).toHaveBeenCalled();
   },
-};
-
-export const Circle: Story = {
-  argTypes: {
-    content: { control: { type: "text" } },
-  },
-  args: {
-    shape: "circle",
-    icon: "mdi:magnify",
-  },
-  render: (args) => ({
-    components: { AuButton },
-    setup() {
-      return { args };
-    },
-    template: container(`<AuButton v-bind="args" circle/>`),
-  }),
 };
 
 export const Group: Story & { args: { content1: string; content2: string } } = {

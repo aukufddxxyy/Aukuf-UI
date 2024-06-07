@@ -1,6 +1,6 @@
 import { makeInstaller } from "@aukuf-ui/utils";
+import printLogo from "@aukuf-ui/utils/print-logo";
 import components from "./components";
-import printLogo from "./print-logo";
 
 import "@aukuf-ui/theme/index.css";
 

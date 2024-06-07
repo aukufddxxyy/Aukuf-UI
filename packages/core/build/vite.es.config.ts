@@ -1,25 +1,25 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import { includes } from "lodash-es";
+import { visualizer } from "rollup-plugin-visualizer";
 
 import dts from "vite-plugin-dts";
 import vue from "@vitejs/plugin-vue";
 import terser from "@rollup/plugin-terser";
 
+import hooksPlugin from "./hooksPlugin";
 import { IS_DEV, IS_PROD, IS_TEST } from "./consts";
 import { moveEsStyles, getDirectoriesSync } from "./utils";
-import hooksPlugin from "./hooksPlugin";
 
 export default defineConfig({
   plugins: [
     vue(),
+    visualizer({
+      filename: "dist/stats.es.html",
+    }),
     dts({
       tsconfigPath: "../../tsconfig.build.json",
       outDir: "dist/types",
-    }),
-    hooksPlugin({
-      // rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
-      rmFiles: [],
-      afterBuild: moveEsStyles,
     }),
     terser({
       compress: {
@@ -48,6 +48,15 @@ export default defineConfig({
         keep_fnames: IS_DEV,
       },
     }),
+    hooksPlugin({
+      rmFiles: [
+        "./dist/es",
+        "./dist/theme",
+        "./dist/types",
+        "./dist/stats.es.html",
+      ],
+      afterBuild: moveEsStyles,
+    }),
   ],
   build: {
     outDir: "dist/es",
@@ -55,7 +64,7 @@ export default defineConfig({
     cssCodeSplit: true,
     sourcemap: !IS_PROD,
     lib: {
-      entry: resolve(__dirname, "./index.ts"),
+      entry: resolve(__dirname, "../index.ts"),
       name: "AukufUI",
       fileName: "index",
       formats: ["es"],
@@ -63,37 +72,39 @@ export default defineConfig({
     rollupOptions: {
       external: [
         "vue",
-        "@popperjs/core",
-        "async-validator",
         "@iconify/vue",
         "@iconify-json/mdi",
+        "@popperjs/core",
+        "async-validator",
       ],
       output: {
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === "style.css") return "index.css";
+        assetFileNames: (chunkInfo) => {
+          if (chunkInfo.name === "style.css") {
+            return "index.css";
+          }
           if (
-            assetInfo.type === "asset" &&
-            /\.(css)$/i.test(assetInfo.name as string)
+            chunkInfo.type === "asset" &&
+            /\.(css)$/i.test(chunkInfo.name as string)
           ) {
             return "theme/[name].[ext]";
           }
-          return assetInfo.name as string;
+          return chunkInfo.name as string;
         },
         manualChunks(id) {
-          if (id.includes("node_modules")) {
+          if (includes(id, "node_modules")) {
             return "vendor";
           }
-          if (id.includes("/packages/hooks")) {
+          if (includes(id, "/packages/hooks")) {
             return "hooks";
           }
           if (
-            id.includes("/packages/utils") ||
-            id.includes("plugin-vue:export-helper")
+            includes(id, "/packages/utils") ||
+            includes(id, "plugin-vue:export-helper")
           ) {
             return "utils";
           }
           for (const compName of getDirectoriesSync("../components")) {
-            if (id.includes(`/packages/components/${compName}`)) {
+            if (includes(id, `/packages/components/${compName}`)) {
               return compName;
             }
           }

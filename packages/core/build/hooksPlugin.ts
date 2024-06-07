@@ -18,7 +18,7 @@ const hooksPlugin: HooksPlugin = ({
   return {
     name: "custom-hooks-plugin",
     buildStart() {
-      each(rmFiles, (file) => shell.rm("-rf", file));
+      each(rmFiles, (fName) => shell.rm("-rf", fName));
       isFunction(beforeBuild) && beforeBuild();
     },
     buildEnd(err?: Error) {

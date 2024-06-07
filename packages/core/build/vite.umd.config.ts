@@ -1,6 +1,7 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import { compression } from "vite-plugin-compression2";
+import { visualizer } from "rollup-plugin-visualizer";
 
 import vue from "@vitejs/plugin-vue";
 import terser from "@rollup/plugin-terser";
@@ -15,9 +16,8 @@ export default defineConfig({
     compression({
       include: /.(cjs|css)$/i,
     }),
-    hooksPlugin({
-      // rmFiles: ["./dist/umd", "./dist/index.css"],
-      afterBuild: moveUmdStyles,
+    visualizer({
+      filename: "dist/stats.umd.html",
     }),
     terser({
       compress: {
@@ -31,11 +31,15 @@ export default defineConfig({
         },
       },
     }),
+    hooksPlugin({
+      rmFiles: ["./dist/umd", "./dist/index.css", "./dist/stats.umd.html"],
+      afterBuild: moveUmdStyles,
+    }),
   ],
   build: {
     outDir: "dist/umd",
     lib: {
-      entry: resolve(__dirname, "./index.ts"),
+      entry: resolve(__dirname, "../index.ts"),
       name: "AukufUI",
       fileName: "index",
       formats: ["umd"],
@@ -47,9 +51,11 @@ export default defineConfig({
         globals: {
           vue: "Vue",
         },
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === "style.css") return "index.css";
-          return assetInfo.name as string;
+        assetFileNames: (chunkInfo) => {
+          if (chunkInfo.name === "style.css") {
+            return "index.css";
+          }
+          return chunkInfo.name as string;
         },
       },
     },

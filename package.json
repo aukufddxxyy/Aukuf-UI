@@ -7,7 +7,7 @@
     "dev": "pnpm --filter @aukuf-ui/play dev",
     "story": "pnpm --filter @aukuf-ui/play storybook",
     "docs:dev": "pnpm --filter @aukuf-ui/docs dev",
-    "docs:build": "pnpm --filter @aukuf-ui/docs build",
+    "docs:build": "cross-env NODE_ENV=production pnpm build && pnpm --filter @aukuf-ui/docs build",
     "test": "cross-env NODE_ENV=test pnpm --filter @aukuf-ui/components test",
     "build": "cross-env NODE_ENV=production pnpm --filter aukuf-ui build",
     "build:dev": "cross-env NODE_ENV=development pnpm --filter aukuf-ui build:watch"
@@ -33,10 +33,12 @@
     "postcss-each-variables": "^0.3.0",
     "postcss-for": "^2.1.1",
     "postcss-nested": "^6.0.1",
+    "rollup": "^4.18.0",
     "sass": "^1.77.4",
     "shelljs": "^0.8.5",
     "typescript": "^5.4.5",
     "vite": "^5.2.12",
+    "vite-plugin-dts": "^3.9.1",
     "vitest": "^1.6.0",
     "vue-tsc": "^2.0.19"
   },

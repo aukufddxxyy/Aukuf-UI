@@ -18,7 +18,7 @@ export default function () {
         font-weight: 600;
     `;
     console.info(`%c${logo}`, rainbowGradient);
-  } else {
-    console.info("Welcome to AukufUI");
+  } else if (DEV) {
+    console.info("[AukufUI]: dev mode...");
   }
 }

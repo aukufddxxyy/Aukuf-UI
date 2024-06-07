@@ -16,7 +16,7 @@ export default defineConfig({
       include: /.(cjs|css)$/i,
     }),
     hooksPlugin({
-      rmFiles: ["./dist/umd", "./dist/index.css"],
+      // rmFiles: ["./dist/umd", "./dist/index.css"],
       afterBuild: moveUmdStyles,
     }),
     terser({

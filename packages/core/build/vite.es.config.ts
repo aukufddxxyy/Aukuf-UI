@@ -1,7 +1,6 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import { includes } from "lodash-es";
-import { visualizer } from "rollup-plugin-visualizer";
 
 import dts from "vite-plugin-dts";
 import vue from "@vitejs/plugin-vue";
@@ -14,9 +13,6 @@ import { moveEsStyles, getDirectoriesSync } from "./utils";
 export default defineConfig({
   plugins: [
     vue(),
-    visualizer({
-      filename: "dist/stats.es.html",
-    }),
     dts({
       tsconfigPath: "../../tsconfig.build.json",
       outDir: "dist/types",

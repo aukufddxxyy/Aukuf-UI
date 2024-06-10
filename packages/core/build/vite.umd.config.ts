@@ -1,7 +1,6 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import { compression } from "vite-plugin-compression2";
-import { visualizer } from "rollup-plugin-visualizer";
 
 import vue from "@vitejs/plugin-vue";
 import terser from "@rollup/plugin-terser";
@@ -15,9 +14,6 @@ export default defineConfig({
     vue(),
     compression({
       include: /.(cjs|css)$/i,
-    }),
-    visualizer({
-      filename: "dist/stats.umd.html",
     }),
     terser({
       compress: {

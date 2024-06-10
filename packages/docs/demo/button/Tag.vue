@@ -1,0 +1,19 @@
+<template>
+  <au-button>button</au-button>
+  <au-button
+    tag="div"
+    role="button"
+    tabindex="0"
+  >
+    div
+  </au-button>
+  <au-button
+    type="primary"
+    tag="a"
+    href="https://github.com/EricWXY/eric-ui"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    a
+  </au-button>
+</template>

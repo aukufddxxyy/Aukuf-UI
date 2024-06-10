@@ -1,0 +1,71 @@
+<template>
+  <p>
+    <au-button size="large">Large</au-button>
+    <au-button>Default</au-button>
+    <au-button size="small">Small</au-button>
+    <au-button
+      size="large"
+      icon="search"
+    >
+      Search
+    </au-button>
+    <au-button icon="search">Search</au-button>
+    <au-button
+      size="small"
+      icon="search"
+    >
+      Search
+    </au-button>
+  </p>
+  <p>
+    <au-button
+      size="large"
+      round
+    >
+      Large
+    </au-button>
+    <au-button round>Default</au-button>
+    <au-button
+      size="small"
+      round
+    >
+      Small
+    </au-button>
+    <au-button
+      size="large"
+      icon="search"
+      round
+    >
+      Search
+    </au-button>
+    <au-button
+      icon="search"
+      round
+    >
+      Search
+    </au-button>
+    <au-button
+      size="small"
+      icon="search"
+      round
+    >
+      Search
+    </au-button>
+  </p>
+  <p>
+    <au-button
+      size="large"
+      icon="search"
+      circle
+    />
+    <au-button
+      icon="search"
+      circle
+    />
+    <au-button
+      size="small"
+      icon="search"
+      circle
+    />
+  </p>
+</template>

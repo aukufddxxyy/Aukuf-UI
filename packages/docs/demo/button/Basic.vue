@@ -1,0 +1,110 @@
+<template>
+  <p>
+    <au-button>Default</au-button>
+    <au-button type="primary">Primary</au-button>
+    <au-button type="success">Success</au-button>
+    <au-button type="info">Info</au-button>
+    <au-button type="warning">Warning</au-button>
+    <au-button type="danger">Danger</au-button>
+  </p>
+
+  <p>
+    <au-button plain>Plain</au-button>
+    <au-button
+      type="primary"
+      plain
+    >
+      Primary
+    </au-button>
+    <au-button
+      type="success"
+      plain
+    >
+      Success
+    </au-button>
+    <au-button
+      type="info"
+      plain
+    >
+      Info
+    </au-button>
+    <au-button
+      type="warning"
+      plain
+    >
+      Warning
+    </au-button>
+    <au-button
+      type="danger"
+      plain
+    >
+      Danger
+    </au-button>
+  </p>
+
+  <p>
+    <au-button round>Round</au-button>
+    <au-button
+      type="primary"
+      round
+    >
+      Primary
+    </au-button>
+    <au-button
+      type="success"
+      round
+    >
+      Success
+    </au-button>
+    <au-button
+      type="info"
+      round
+    >
+      Info
+    </au-button>
+    <au-button
+      type="warning"
+      round
+    >
+      Warning
+    </au-button>
+    <au-button
+      type="danger"
+      round
+    >
+      Danger
+    </au-button>
+  </p>
+
+  <p>
+    <au-button
+      icon="search"
+      circle
+    />
+    <au-button
+      type="primary"
+      icon="edit"
+      circle
+    />
+    <au-button
+      type="success"
+      icon="check"
+      circle
+    />
+    <au-button
+      type="info"
+      icon="message"
+      circle
+    />
+    <au-button
+      type="warning"
+      icon="star"
+      circle
+    />
+    <au-button
+      type="danger"
+      icon="trash"
+      circle
+    />
+  </p>
+</template>

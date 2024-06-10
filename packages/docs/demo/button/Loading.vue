@@ -1,0 +1,30 @@
+<template>
+  <div>
+    <au-button
+      type="primary"
+      loading
+    >
+      Loading
+    </au-button>
+    <au-button
+      type="primary"
+      loading-icon="circle-notch"
+      loading
+    >
+      Loading
+    </au-button>
+    <au-button
+      type="primary"
+      loading
+    >
+      <template #loading>
+        <er-icon
+          style="margin-right: 6px"
+          icon="star"
+          spin
+        />
+      </template>
+      Loading
+    </au-button>
+  </div>
+</template>

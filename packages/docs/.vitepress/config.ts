@@ -8,7 +8,7 @@ import {
 export default defineConfig({
   title: "Aukuf-UI",
   description: "aukuf 组件库",
-  base: "/Aukuf-UI/",
+  base: "/aukuf-ui/",
   appearance: false,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
